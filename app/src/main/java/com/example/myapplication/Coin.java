@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.view.Menu;
+
 import java.util.ArrayList;
 
 public class Coin {
@@ -110,8 +112,13 @@ public class Coin {
         coins.add(new Coin("Stellar", "XLM", 0.061529, -2.09, 1.78, 25.85, 1232939271.42, 502557303.372596));
         return coins;
     }
-    //public static Coin searchCoin(String search){
-        //for (int i = 0; i < 9; i++)
-    //}
+    public static Coin getCoinByName(String coinName){
+        for (Coin c : Coin.getCoins()) {
+            if (c.getName().equals(coinName)) {
+                return c;
+            }
+        }
+        return null;
+    }
 
 }

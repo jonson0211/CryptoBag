@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -15,32 +16,29 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     public static final String message = "com.example.CryptoBug.MESSAGE";
-    private String str;
     private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG,"onCreate: Starting onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        System.out.println("HI");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        //launchDetailActivity = (Button) findViewById(R.id.launchDetailActivity);
-        //userInput = (EditText) findViewById(R.id.userInput);
-        launchDetailActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity();
-            }
-        });
-
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        Adapter adapter = new Adapter();
+        adapter.setData(Coin.getCoins());
+        recyclerView.setAdapter(adapter);
 
     }
-    public void openActivity() {
+    /*public void openActivity() {
         Intent intent = new Intent(this, DetailActivity.class);
-        str = userInput.getText().toString();
-        intent.putExtra("CoinName", str);
+        //str = userInput.getText().toString();
+        //intent.putExtra("CoinName", str);
         startActivity(intent);
-    }
+    }*/
 
 }
